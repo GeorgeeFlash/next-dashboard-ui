@@ -53,7 +53,7 @@ const SingleTeacherPage = () => {
           {/* SMALL CARDS */}
           <div className="flex-1 flex gap-4 justify-between flex-wrap">
             {/* CARD */}
-            <div className="w-full bg-white p-4 rounded-md flex gap-4 md:w-[48%] lg:w-[46%] 2xl:w-[48%]">
+            <div className="w-full bg-white p-4 rounded-md flex gap-4 md:w-[48%] xl:w-[46%] 2xl:w-[47%]">
               <Image
                 src={"/singleAttendance.png"}
                 alt=""
@@ -67,7 +67,7 @@ const SingleTeacherPage = () => {
               </div>
             </div>
             {/* CARD */}
-            <div className="w-full bg-white p-4 rounded-md flex gap-4 md:w-[48%] lg:w-[46%] 2xl:w-[48%]">
+            <div className="w-full bg-white p-4 rounded-md flex gap-4 md:w-[48%] xl:w-[46%] 2xl:w-[47%]">
               <Image
                 src={"/singleBranch.png"}
                 alt=""
@@ -81,7 +81,7 @@ const SingleTeacherPage = () => {
               </div>
             </div>
             {/* CARD */}
-            <div className="w-full bg-white p-4 rounded-md flex gap-4 md:w-[48%] lg:w-[46%] 2xl:w-[48%]">
+            <div className="w-full bg-white p-4 rounded-md flex gap-4 md:w-[48%] xl:w-[46%] 2xl:w-[47%]">
               <Image
                 src={"/singleLesson.png"}
                 alt=""
@@ -95,7 +95,7 @@ const SingleTeacherPage = () => {
               </div>
             </div>
             {/* CARD */}
-            <div className="w-full bg-white p-4 rounded-md flex gap-4 md:w-[48%] lg:w-[46%] 2xl:w-[48%]">
+            <div className="w-full bg-white p-4 rounded-md flex gap-4 md:w-[48%] xl:w-[46%] 2xl:w-[47%]">
               <Image
                 src={"/singleClass.png"}
                 alt=""

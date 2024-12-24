@@ -9,8 +9,6 @@ const data = [
   { name: "Group A", value: 8, fill: "#FAE27C" },
 ];
 
-// 2:58:36
-
 const Performance = () => {
   return (
     <div className="bg-white p-4 rounded-md h-80 relative">
