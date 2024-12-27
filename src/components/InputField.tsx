@@ -3,7 +3,7 @@ import { FieldError } from "react-hook-form";
 
 type InputFieldProps = {
   label: string;
-  type?: string;
+  type?: "text" | "email" | "password" | "date" | "file";
   register: any;
   name: string;
   defaultValue?: string;

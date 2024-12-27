@@ -5,7 +5,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import InputField from "../InputField";
-import Image from "next/image";
 
 const schema = z.object({
   username: z
@@ -20,15 +19,11 @@ const schema = z.object({
   lastName: z.string().min(1, { message: "Last name is required!" }),
   phone: z.string().min(1, { message: "Phone is required!" }),
   address: z.string().min(1, { message: "Address is required!" }),
-  bloodType: z.string().min(1, { message: "Blood Type is required!" }),
-  birthday: z.date({ message: "Birthday is required!" }),
-  sex: z.enum(["male", "female"], { message: "Sex is required!" }),
-  img: z.instanceof(File, { message: "Image is required!" }),
 });
 
 type Inputs = z.infer<typeof schema>;
 
-const TeacherForm = ({
+const ParentForm = ({
   type,
   data,
 }: {
@@ -48,10 +43,11 @@ const TeacherForm = ({
   return (
     <form className="flex flex-col gap-8" onSubmit={onSubmit}>
       {type === "create" ? (
-        <h1 className="text-xl font-semibold">Create a new Teacher</h1>
+        <h1 className="text-xl font-semibold">Create a new Parent</h1>
       ) : (
         <h1 className="text-xl font-semibold">Edit {data.username}</h1>
       )}
+
       <span className="text-xs text-gray-400 font-medium">
         Authentication Information
       </span>
@@ -113,54 +109,6 @@ const TeacherForm = ({
           register={register}
           error={errors.address}
         />
-        <InputField
-          label="Blood Type"
-          name="bloodType"
-          defaultValue={data?.bloodType}
-          register={register}
-          error={errors.bloodType}
-        />
-        <InputField
-          label="Birthday"
-          name="birthday"
-          type="date"
-          defaultValue={data?.birthday}
-          register={register}
-          error={errors.birthday}
-        />
-        <div className="flex flex-col gap-2 w-full md:w-1/4">
-          <label className="text-xs text-gray-500" htmlFor="">
-            Sex
-          </label>
-          <select
-            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
-            {...register("sex")}
-            defaultValue={data?.sex}
-          >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-          {errors?.sex?.message && (
-            <p className="text-xs text-red-400">
-              {errors?.sex.message.toString()}
-            </p>
-          )}
-        </div>
-        <div className="flex flex-col gap-2 w-full md:w-1/4">
-          <label
-            className="text-xs text-gray-500 flex items-center justify-center gap-2 cursor-pointer"
-            htmlFor="img"
-          >
-            <Image src={"/upload.png"} alt="" width={28} height={28} />
-            <span className="">Upload a photo</span>
-          </label>
-          <input id="img" type="file" {...register("img")} className="hidden" />
-          {errors?.img?.message && (
-            <p className="text-xs text-red-400">
-              {errors?.img.message.toString()}
-            </p>
-          )}
-        </div>
       </div>
       <button className="bg-blue-400 text-white p-2 rounded-md" type="submit">
         {type === "create" ? "Create" : "Update"}
@@ -169,4 +117,4 @@ const TeacherForm = ({
   );
 };
 
-export default TeacherForm;
+export default ParentForm;

@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import React, { useState } from "react";
+// import ParentForm from "./forms/ParentForm";
 // import TeacherForm from "./forms/TeacherForm";
 // import StudentForm from "./forms/StudentForm";
 
@@ -14,11 +15,16 @@ const StudentForm = dynamic(() => import("./forms/StudentForm"), {
   loading: () => <h1 className="">Loading...</h1>,
 });
 
+const ParentForm = dynamic(() => import("./forms/ParentForm"), {
+  loading: () => <h1 className="">Loading...</h1>,
+});
+
 const forms: {
   [key: string]: (type: "create" | "update", data?: any) => JSX.Element;
 } = {
   teacher: (type, data) => <TeacherForm type={type} data={data} />,
   student: (type, data) => <StudentForm type={type} data={data} />,
+  parent: (type, data) => <ParentForm type={type} data={data} />,
 };
 
 const FormModal = ({

@@ -252,6 +252,7 @@ export const parentsData = [
   {
     id: 1,
     name: "John Doe",
+    username: "johndoe",
     students: ["Sarah Brewer"],
     email: "john@doe.com",
     phone: "1234567890",
@@ -260,6 +261,7 @@ export const parentsData = [
   {
     id: 2,
     name: "Jane Doe",
+    username: "janedoe",
     students: ["Cecilia Bradley"],
     email: "jane@doe.com",
     phone: "1234567890",
@@ -268,6 +270,7 @@ export const parentsData = [
   {
     id: 3,
     name: "Mike Geller",
+    username: "mikegeller",
     students: ["Fanny Caldwell"],
     email: "mike@geller.com",
     phone: "1234567890",
@@ -276,6 +279,7 @@ export const parentsData = [
   {
     id: 4,
     name: "Jay French",
+    username: "jayfrench",
     students: ["Mollie Fitzgerald", "Ian Bryant"],
     email: "mike@geller.com",
     phone: "1234567890",
@@ -284,6 +288,7 @@ export const parentsData = [
   {
     id: 5,
     name: "Jane Smith",
+    username: "janesmith",
     students: ["Mable Harvey"],
     email: "mike@geller.com",
     phone: "1234567890",
@@ -292,6 +297,7 @@ export const parentsData = [
   {
     id: 6,
     name: "Anna Santiago",
+    username: "annasantiago",
     students: ["Joel Lambert"],
     email: "mike@geller.com",
     phone: "1234567890",
@@ -300,6 +306,7 @@ export const parentsData = [
   {
     id: 7,
     name: "Allen Black",
+    username: "allenblack",
     students: ["Carrie Tucker", "Lilly Underwood"],
     email: "mike@geller.com",
     phone: "1234567890",
@@ -308,6 +315,7 @@ export const parentsData = [
   {
     id: 8,
     name: "Ophelia Castro",
+    username: "opheliacastro",
     students: ["Alexander Blair"],
     email: "mike@geller.com",
     phone: "1234567890",
@@ -316,6 +324,7 @@ export const parentsData = [
   {
     id: 9,
     name: "Derek Briggs",
+    username: "derekbriggs",
     students: ["Susan Webster", "Maude Stone"],
     email: "mike@geller.com",
     phone: "1234567890",
@@ -324,6 +333,7 @@ export const parentsData = [
   {
     id: 10,
     name: "John Glover",
+    username: "johnglover",
     students: ["Stella Scott"],
     email: "mike@geller.com",
     phone: "1234567890",

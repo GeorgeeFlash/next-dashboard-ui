@@ -47,7 +47,11 @@ const StudentForm = ({
 
   return (
     <form className="flex flex-col gap-8" onSubmit={onSubmit}>
-      <h1 className="text-xl font-semibold">Create a new student</h1>
+      {type === "create" ? (
+        <h1 className="text-xl font-semibold">Create a new Student</h1>
+      ) : (
+        <h1 className="text-xl font-semibold">Edit {data.username}</h1>
+      )}
       <span className="text-xs text-gray-400 font-medium">
         Authentication Information
       </span>
