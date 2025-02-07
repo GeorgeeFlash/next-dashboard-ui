@@ -9,7 +9,7 @@ import { Class, Exam, Lesson, Prisma, Subject, Teacher } from "@prisma/client";
 import Image from "next/image";
 import React from "react";
 
-export type LessonProp = { subject: Subject, class: Class, teacher: Teacher };
+export type LessonProp = { subject: Subject; class: Class; teacher: Teacher };
 
 export type ExamList = Exam & { lesson: LessonProp };
 
@@ -45,8 +45,12 @@ const renderRow = (item: ExamList) => (
   >
     <td className="flex items-center gap-4 p-4">{item.lesson.subject.name}</td>
     <td>{item.lesson.class.name}</td>
-    <td className="hidden md:table-cell">{item.lesson.teacher.name + " " + item.lesson.teacher.surname}</td>
-    <td className="hidden md:table-cell">{new Intl.DateTimeFormat("en-US").format(item.startTime)}</td>
+    <td className="hidden md:table-cell">
+      {item.lesson.teacher.name + " " + item.lesson.teacher.surname}
+    </td>
+    <td className="hidden md:table-cell">
+      {new Intl.DateTimeFormat("en-US").format(item.startTime)}
+    </td>
     <td>
       <div className="flex items-center gap-2">
         {role === "admin" && (
@@ -79,20 +83,20 @@ const ExamsListPage = async ({
         switch (key) {
           case "teacherId":
             query.lesson = {
-              teacherId: value
+              teacherId: value,
             };
             break;
           case "classId":
             query.lesson = {
-              classId: parseInt(value)
+              classId: parseInt(value),
             };
             break;
           case "search":
             query.lesson = {
-              subject : {
-                name: {contains: value, mode: "insensitive"}
-              }
-            }
+              subject: {
+                name: { contains: value, mode: "insensitive" },
+              },
+            };
             break;
           default:
             break;
