@@ -2,14 +2,19 @@ import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import {  role } from "@/lib/data";
 import prisma from "@/lib/prisma";
 import { ITEM_PER_PAGE } from "@/lib/settings";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { Announcement, Class, Prisma } from "@prisma/client";
 import Image from "next/image";
 import React from "react";
 
-export type AnnouncementList = Announcement & {class: Class}
+const { sessionClaims } = (async () => {
+  return await auth();
+})();
+const role = (sessionClaims?.metadata as { role?: string })?.role;
+
+export type AnnouncementList = Announcement & { class: Class };
 
 const columns = [
   {
@@ -38,7 +43,10 @@ const renderRow = (item: AnnouncementList) => (
   >
     <td className="flex items-center gap-4 p-4">{item.title}</td>
     <td>{item.class.name}</td>
-    <td className="hidden md:table-cell"> {new Intl.DateTimeFormat("en-Us").format(item.date)}</td>
+    <td className="hidden md:table-cell">
+      {" "}
+      {new Intl.DateTimeFormat("en-Us").format(item.date)}
+    </td>
     <td>
       <div className="flex items-center gap-2">
         {role === "admin" && (
