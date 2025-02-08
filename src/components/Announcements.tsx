@@ -21,7 +21,7 @@ const Announcements = async () => {
       }),
     },
   });
- 
+
   return (
     <div className="bg-white p-4 rounded-md">
       <div className="flex items-center justify-between">
@@ -43,7 +43,7 @@ const Announcements = async () => {
         {data[1] && (
           <div className="bg-lamaPurpleLight rounded-md p-4">
             <div className="flex items-center justify-between">
-              <h2 className="font-medium">{data[1]?.description}</h2>
+              <h2 className="font-medium">{data[1]?.title}</h2>
               <span className="text-sm text-gray-400 bg-white rounded-md p-1">
                 {new Intl.DateTimeFormat("en-GB").format(data[1].date)}
               </span>
