@@ -18,7 +18,7 @@ const AttendanceChart = ({
 }: {
   data: { name: string; present: number; absent: number }[];
 }) => {
-  return (
+  return ( // 3:27:40
     <>
       <ResponsiveContainer width={"100%"} height={"90%"}>
         <BarChart width={500} height={300} data={data} barSize={20}>
