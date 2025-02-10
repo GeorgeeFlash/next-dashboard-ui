@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import {clerkClient} from '@clerk/express';
+import { clerkClient } from "@clerk/express";
 
 import {
   ClassSchema,
@@ -155,8 +155,8 @@ export const createTeacher = async (
       password: data.password,
       firstName: data.name,
       lastName: data.surname,
-      publicMetadata: {role: "teacher"},
-    })
+      publicMetadata: { role: "teacher" },
+    });
     await prisma.teacher.create({
       data: {
         id: user.id,
@@ -171,9 +171,9 @@ export const createTeacher = async (
         sex: data.sex,
         birthday: data.birthday,
         subjects: {
-          connect: data.subjects?.map((subjectId:string) => ({
-            id: parseInt(subjectId)
-          }))
+          connect: data.subjects?.map((subjectId: string) => ({
+            id: parseInt(subjectId),
+          })),
         },
       },
     });
@@ -191,12 +191,39 @@ export const updateTeacher = async (
   currentState: CurrentState,
   data: TeacherSchema
 ) => {
+  if (!data.id) return { success: false, error: true };
+
   try {
+    const user = await clerkClient.users.updateUser(data.id, {
+      username: data.username,
+      ...(data.password !== "" && { password: data.password }),
+      firstName: data.name,
+      lastName: data.surname,
+      publicMetadata: { role: "teacher" },
+    });
     await prisma.teacher.update({
       where: {
         id: data.id,
       },
-      data: {},
+      data: {
+        ...(data.password !== "" && { password: data.password }),
+        id: user.id,
+        username: data.username,
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        ...(data.img && { img: data.img }),
+        bloodType: data.bloodType,
+        sex: data.sex,
+        birthday: data.birthday,
+        subjects: {
+          set: data.subjects?.map((subjectId: string) => ({
+            id: parseInt(subjectId),
+          })),
+        },
+      },
     });
 
     // revalidatePath("/list/teachers");

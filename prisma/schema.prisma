@@ -26,11 +26,11 @@ model Student {
   sex         UserSex
   createdAt   DateTime     @default(now())
   parentId    String
-  parent      Parent       @relation(fields: [parentId], references: [id])
+  parent      Parent       @relation(fields: [parentId], references: [id], onDelete: Cascade)
   classId     Int
-  class       Class        @relation(fields: [classId], references: [id])
+  class       Class        @relation(fields: [classId], references: [id], onDelete: Cascade)
   gradeId     Int
-  grade       Grade        @relation(fields: [gradeId], references: [id])
+  grade       Grade        @relation(fields: [gradeId], references: [id], onDelete: Cascade)
   attendances Attendance[]
   results     Result[]
   birthday    DateTime
@@ -80,11 +80,11 @@ model Class {
   capacity Int
 
   supervisorId  String?
-  supervisor    Teacher?       @relation(fields: [supervisorId], references: [id])
+  supervisor    Teacher?       @relation(fields: [supervisorId], references: [id], onDelete: Cascade)
   lessons       Lesson[]
   students      Student[]
   gradeId       Int
-  grade         Grade          @relation(fields: [gradeId], references: [id])
+  grade         Grade          @relation(fields: [gradeId], references: [id], onDelete: Cascade)
   events        Event[]
   announcements Announcement[]
 }
@@ -104,11 +104,11 @@ model Lesson {
   endTime   DateTime
 
   subjectId   Int
-  subject     Subject      @relation(fields: [subjectId], references: [id])
+  subject     Subject      @relation(fields: [subjectId], references: [id], onDelete: Cascade)
   classId     Int
-  class       Class        @relation(fields: [classId], references: [id])
+  class       Class        @relation(fields: [classId], references: [id], onDelete: Cascade)
   teacherId   String
-  teacher     Teacher      @relation(fields: [teacherId], references: [id])
+  teacher     Teacher      @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   exams       Exam[]
   assignments Assignment[]
   attendances Attendance[]
@@ -121,7 +121,7 @@ model Exam {
   endTime   DateTime
 
   lessonId Int
-  lesson   Lesson   @relation(fields: [lessonId], references: [id])
+  lesson   Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
   results  Result[]
 }
 
@@ -132,7 +132,7 @@ model Assignment {
   dueDate   DateTime
 
   lessonId Int
-  lesson   Lesson   @relation(fields: [lessonId], references: [id])
+  lesson   Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
   results  Result[]
 }
 
@@ -141,11 +141,11 @@ model Result {
   score Int
 
   examId       Int?
-  exam         Exam?       @relation(fields: [examId], references: [id])
+  exam         Exam?       @relation(fields: [examId], references: [id], onDelete: Cascade)
   assignmentId Int?
-  assignment   Assignment? @relation(fields: [assignmentId], references: [id])
+  assignment   Assignment? @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
   studentId    String
-  student      Student     @relation(fields: [studentId], references: [id])
+  student      Student     @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
 
 model Attendance {
@@ -154,9 +154,9 @@ model Attendance {
   present Boolean
 
   studentId String
-  student   Student @relation(fields: [studentId], references: [id])
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
   lessonId  Int
-  lesson    Lesson  @relation(fields: [lessonId], references: [id])
+  lesson    Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 }
 
 model Event {
@@ -167,7 +167,7 @@ model Event {
   endTime     DateTime
 
   classId Int?
-  class   Class? @relation(fields: [classId], references: [id])
+  class   Class? @relation(fields: [classId], references: [id], onDelete: Cascade)
 }
 
 model Announcement {
@@ -177,7 +177,7 @@ model Announcement {
   date        DateTime
 
   classId Int?
-  class   Class? @relation(fields: [classId], references: [id])
+  class   Class? @relation(fields: [classId], references: [id], onDelete: Cascade)
 }
 
 enum UserSex {
