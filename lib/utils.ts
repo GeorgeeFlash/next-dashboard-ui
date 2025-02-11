@@ -7,15 +7,19 @@ import { auth } from "@clerk/nextjs/server";
 
 export const userInfo = async () => {
   const user = await auth();
-  const {userId, sessionClaims} = user;
-  const role = (sessionClaims?.metadata as {role?: string})?.role;
+  const { userId, sessionClaims } = user;
+  const role = (
+    sessionClaims?.metadata as {
+      role?: "admin" | "teacher" | "student" | "parent";
+    }
+  )?.role;
 
-  if (!user || !role) {
+  if (!userId || !role) {
     return (await auth()).redirectToSignIn();
   }
 
-  return {currentUserId: userId, role}
-}
+  return { currentUserId: userId, role };
+};
 
 const currentWorkWeek = () => {
   const today = new Date();

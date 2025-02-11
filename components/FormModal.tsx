@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteClass, deleteStudent, deleteSubject, deleteTeacher } from "../lib/actions";
+import { deleteClass, deleteExam, deleteStudent, deleteSubject, deleteTeacher } from "../lib/actions";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -16,7 +16,7 @@ const deleteActionMap = {
   student: deleteStudent,
   parent: deleteSubject,
   lesson: deleteSubject,
-  exam: deleteSubject,
+  exam: deleteExam,
   assignment: deleteSubject,
   result: deleteSubject,
   attendance: deleteSubject,
@@ -33,6 +33,10 @@ const StudentForm = dynamic(() => import("./forms/StudentForm"), {
 });
 
 const SubjectForm = dynamic(() => import("./forms/SubjectForm"), {
+  loading: () => <h1 className="">Loading...</h1>,
+});
+
+const ExamForm = dynamic(() => import("./forms/ExamForm"), {
   loading: () => <h1 className="">Loading...</h1>,
 });
 
@@ -62,6 +66,14 @@ const forms: {
   ),
   student: (setOpen, type, data, relatedData) => (
     <StudentForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
+  exam: (setOpen, type, data, relatedData) => (
+    <ExamForm
       type={type}
       data={data}
       setOpen={setOpen}
@@ -125,7 +137,7 @@ const FormModal = ({
         router.refresh();
         setOpen(false);
       }
-    }, [state]);
+    }, [state, router]);
 
     return type === "delete" && id ? (
       <form action={formAction} className="p-4 flex flex-col gap-4">
