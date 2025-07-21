@@ -1,5 +1,4 @@
 import { userInfo } from "@/lib/utils";
-import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
@@ -13,7 +12,7 @@ import FormContainer from "@/components/FormContainer";
 
 export type StudentList = Student & { class: Class };
 
-const {role} = await userInfo();
+const { role } = await userInfo();
 
 const columns = [
   {
@@ -74,13 +73,15 @@ const renderRow = (item: StudentList) => (
     <td className="hidden lg:table-cell">{item.address}</td>
     <td>
       <div className="flex items-center gap-2">
-        <Link href={`/list/students/${item.id}`}>
-          <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
-            <Image src={"/view.png"} alt="" width={16} height={16} />
-          </button>
-        </Link>
         {role === "admin" && (
-          <FormContainer table="student" type="delete" id={item.id} />
+          <>
+            <Link href={`/list/students/${item.id}`}>
+              <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
+                <Image src={"/view.png"} alt="" width={16} height={16} />
+              </button>
+            </Link>
+            <FormContainer table="student" type="delete" id={item.id} />
+          </>
         )}
       </div>
     </td>
